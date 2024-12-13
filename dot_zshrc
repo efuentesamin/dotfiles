@@ -81,8 +81,6 @@ export BAT_THEME=tokyonight_night
 
 source "$HOME/.aliases"
 
-source "$HOME/.env"
-
 # POWERLEVEL9K_DISABLE_GITSTATUS=true
 
 
