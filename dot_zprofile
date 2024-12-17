@@ -1,5 +1,6 @@
+#export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-# If you come from bash you might have to change your $PATH.
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export GOPATH=$HOME/go
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$GOPATH/bin:$PATH
+export EDITOR='nvim'
+export VISUAL='nvim'
+
