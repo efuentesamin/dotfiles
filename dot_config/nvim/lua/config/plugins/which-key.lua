@@ -1,0 +1,91 @@
+return {
+	"folke/which-key.nvim",
+	event = "VeryLazy",
+	dependencies = {
+		"echasnovski/mini.nvim",
+	},
+	init = function()
+		vim.o.timeout = true
+		vim.o.timeoutlen = 500
+	end,
+	opts = {
+		-- your configuration comes here
+		-- or leave it empty to use the default settings
+		-- refer to the configuration section below
+		window = {
+			border = "single",
+		},
+	},
+	config = function()
+		require("which-key").add({
+			{ "<leader>T", group = "Treesitter" },
+			{ "<leader>Ti", "<cmd>TSConfigInfo<cr>", desc = "Info" },
+			{ "<leader>b", group = "Buffers" },
+			{ "<leader>ba", "<cmd>lua require('close_buffers').wipe({ type = 'hidden' })<cr>", desc = "Close hidden" },
+			{ "<leader>bc", "<cmd>Bdelete<cr>", desc = "Close Buffer" },
+			{ "<leader>bx", "<cmd>Bwipeout<cr>", desc = "Delete Buffer" },
+			{ "<leader>e", "<cmd>Neotree filesystem reveal float<cr>", desc = "Open explorer" },
+			{ "<leader>g", group = "Git" },
+			{ "<leader>gC", "<cmd>Telescope git_bcommits<cr>", desc = "Checkout commit(for current file)" },
+			{ "<leader>gR", "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", desc = "Reset Buffer" },
+			{ "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch" },
+			{ "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Checkout commit" },
+			{ "<leader>gd", "<cmd>Gitsigns diffthis HEAD<cr>", desc = "Git Diff" },
+			{
+				"<leader>gj",
+				"<cmd>lua require 'gitsigns'.next_hunk({navigation_message = false})<cr>",
+				desc = "Next Hunk",
+			},
+			{
+				"<leader>gk",
+				"<cmd>lua require 'gitsigns'.prev_hunk({navigation_message = false})<cr>",
+				desc = "Prev Hunk",
+			},
+			{ "<leader>gl", "<cmd>LazyGit<cr>", desc = "Lazygit" },
+			{ "<leader>gm", "<cmd>lua require 'gitsigns'.blame_line()<cr>", desc = "Blame" },
+			{ "<leader>go", "<cmd>Telescope git_status<cr>", desc = "Open changed file" },
+			{ "<leader>gp", "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", desc = "Preview Hunk" },
+			{ "<leader>gr", "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", desc = "Reset Hunk" },
+			{ "<leader>gs", "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", desc = "Stage Hunk" },
+			{ "<leader>gu", "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", desc = "Undo Stage Hunk" },
+			{ "<leader>l", group = "LSP" },
+			{ "<leader>lI", "<cmd>Mason<cr>", desc = "Mason Info" },
+			{ "<leader>lc", "<cmd>Lspsaga show_cursor_diagnostics<cr>", desc = "Cursor Diagnostic" },
+			{ "<leader>ld", "<cmd>lua vim.diagnostic.setloclist()<cr>", desc = "Diagnostic" },
+			{ "<leader>ll", "<cmd>Lspsaga show_line_diagnostics<cr>", desc = "Line Diagnostic" },
+			{ "<leader>lo", "<cmd>Navbuddy<cr>", desc = "Outline" },
+			{ "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Document Symbols" },
+			{ "<leader>s", group = "Search" },
+			{ "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
+			{ "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Find highlight groups" },
+			{ "<leader>sM", "<cmd>TodoTelescope<cr>", desc = "Todos" },
+			{ "<leader>sR", "<cmd>Telescope registers<cr>", desc = "Registers" },
+			{ "<leader>sa", "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<cr>", desc = "Find all" },
+			{ "<leader>sb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+			{
+				"<leader>sc",
+				"<cmd>lua require('telescope.builtin').colorscheme({enable_preview = true})<cr>",
+				desc = "Colorscheme with Preview",
+			},
+			{ "<leader>sd", "<cmd>tab DBUI<cr>", desc = "Database client" },
+			{ "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Find file" },
+			{ "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Find help" },
+			{ "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
+			{ "<leader>sl", "<cmd>Telescope resume<cr>", desc = "Resume last search" },
+			{ "<leader>sr", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File" },
+			{ "<leader>st", "<cmd>Telescope live_grep<cr>", desc = "Text" },
+			{ "<leader>sz", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Find in current buffer" },
+			{ "<leader>t", group = "Tabs" },
+			{ "<leader>tn", "<cmd>tabn<cr>", desc = "Select next tab" },
+			{ "<leader>to", "<cmd>tabnew<cr>", desc = "Opern new tab" },
+			{ "<leader>tp", "<cmd>tabp<cr>", desc = "Select previous tab" },
+			{ "<leader>tx", "<cmd>tabclose<cr>", desc = "Close current tab" },
+			{ "<leader>x", group = "Trouble" },
+			{ "<leader>xw", "<cmd>Trouble diagnostics toggle<CR>", desc = "Workspace Diagnostics" },
+			{ "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Document Diagnostics" },
+			{ "<leader>xq", "<cmd>Trouble quickfix toggle<CR>", desc = "Open trouble quickfix list" },
+			{ "<leader>xl", "<cmd>Trouble loclist toggle<CR>", desc = "Open trouble location list" },
+			{ "<leader>xt", "<cmd>Trouble todo toggle<CR>", desc = "Open todos in trouble" },
+		})
+	end,
+}
