@@ -13,7 +13,7 @@ return {
 		mason_lspconfig.setup({
 			-- list of servers for mason to install
 			ensure_installed = {
-				"tsserver",
+				"ts_ls",
 				"html",
 				"cssls",
 				"tailwindcss",
@@ -80,7 +80,7 @@ return {
 
 			-- Mappings.
 			-- typescript specific keymaps (e.g. rename file and update imports)
-			if client.name == "tsserver" then
+			if client.name == "ts_ls" then
 				local opts = { buffer = bufnr, silent = true }
 				keymap.set("n", "tr", "<cmd>TypescriptRenameFile<cr>", opts) -- rename file and update imports
 				keymap.set("n", "to", "<cmd>TypescriptOrganizeImports<cr>", opts) -- organize imports (not in youtube nvim video)
