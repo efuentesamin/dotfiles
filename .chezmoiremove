@@ -1,0 +1,3 @@
+dot_config/nvim/lua/config/plugins/bufferline.lua
+dot_config/nvim/lua/config/plugins/indent-blankline.lua
+
