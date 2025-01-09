@@ -31,7 +31,7 @@ opt.showmatch = true
 opt.title = true
 opt.laststatus = 3
 opt.scrolloff = 10
-vim.o.showtabline = 2
+--vim.o.showtabline = 2
 
 -----------------------------------------------------------
 -- Treesitter based folding
@@ -122,34 +122,35 @@ opt.shortmess:append("sI")
 
 -- -- Disable builtin plugins
 local disabled_built_ins = {
-        "2html_plugin",
-        "getscript",
-        "getscriptPlugin",
-        "gzip",
-        "logipat",
-        --"netrw",
-        --"netrwPlugin",
-        --"netrwSettings",
-        --"netrwFileHandlers",
-        "matchit",
-        "tar",
-        "tarPlugin",
-        "rrhelper",
-        "spellfile_plugin",
-        "vimball",
-        "vimballPlugin",
-        "zip",
-        "zipPlugin",
-        "tutor",
-        "rplugin",
-        "synmenu",
-        "optwin",
-        "compiler",
-        "bugreport",
-        "ftplugin",
+	"2html_plugin",
+	"getscript",
+	"getscriptPlugin",
+	"gzip",
+	"logipat",
+	--"netrw",
+	--"netrwPlugin",
+	--"netrwSettings",
+	--"netrwFileHandlers",
+	"matchit",
+	"tar",
+	"tarPlugin",
+	"rrhelper",
+	"spellfile_plugin",
+	"vimball",
+	"vimballPlugin",
+	"zip",
+	"zipPlugin",
+	"tutor",
+	"rplugin",
+	"synmenu",
+	"optwin",
+	"compiler",
+	"bugreport",
+	"ftplugin",
 }
 
 for _, plugin in pairs(disabled_built_ins) do
-        g["loaded_" .. plugin] = 1
+	g["loaded_" .. plugin] = 1
 end
 
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,globals,winsize,winpos,terminal,localoptions"

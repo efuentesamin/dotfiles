@@ -4,8 +4,6 @@ return {
 		"williamboman/mason.nvim",
 		"neovim/nvim-lspconfig",
 		"hrsh7th/cmp-nvim-lsp",
-		"SmiteshP/nvim-navic",
-		"SmiteshP/nvim-navbuddy",
 	},
 	config = function()
 		local mason_lspconfig = require("mason-lspconfig")
@@ -87,10 +85,10 @@ return {
 				-- vim.keymap.set("n", "<T-u>", "<cmd>TypescriptRemoveUnused<cr>", bufopts) -- remove unused variables (not in youtube nvim video)
 			end
 
-			if client.server_capabilities.documentSymbolProvider then
+			--[[ if client.server_capabilities.documentSymbolProvider then
 				require("nvim-navic").attach(client, bufnr)
 				require("nvim-navbuddy").attach(client, bufnr)
-			end
+			end ]]
 		end
 
 		-- import lspconfig plugin

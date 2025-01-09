@@ -13,7 +13,7 @@ return {
 				"stylua", -- lua formatter
 				"isort", -- python formatter
 				"ruff", -- python formatter
-				--"mypy", -- python linter
+				"mypy", -- python linter
 				"eslint_d", -- js linter
 			},
 		})

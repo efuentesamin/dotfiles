@@ -3,11 +3,11 @@
 -----------------------------------------------------------
 
 local function map(mode, lhs, rhs, opts)
-        local options = { noremap = true, silent = true }
-        if opts then
-                options = vim.tbl_extend("force", options, opts)
-        end
-        vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+	local options = { noremap = true, silent = true }
+	if opts then
+		options = vim.tbl_extend("force", options, opts)
+	end
+	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 vim.g.mapleader = " "
@@ -49,7 +49,7 @@ map("n", "<C-S-h>", "<C-w>H")
 map("n", "<C-S-j>", "<C-w>J")
 map("n", "<C-S-k>", "<C-w>K")
 map("n", "<C-S-l>", "<C-w>L")
-map("n", "<C-m>", ":MaximizerToggle<CR>")
+map("n", "<C-s>", ":MaximizerToggle<CR>")
 
 -----------------------------------------------------------
 -- Applications and Plugins shortcuts
@@ -68,4 +68,3 @@ map("v", "<C-b>", "<ESC><cmd>lua require('Comment.api').toggle.blockwise(vim.fn.
 
 map("n", "ds", ":diffget //2<Bar>diffupdate<CR>")
 map("n", "dm", ":diffget //3<Bar>diffupdate<CR>")
-

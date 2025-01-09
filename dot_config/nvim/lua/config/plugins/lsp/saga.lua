@@ -9,6 +9,9 @@ return {
 			request_timeout = 2000,
 			-- keybinds for navigation in lspsaga window
 			scroll_preview = { scroll_down = "<C-f>", scroll_up = "<C-b>" },
+			symbol_in_winbar = {
+				enable = false,
+			},
 			lightbulb = {
 				enable = false,
 				sign = false,
