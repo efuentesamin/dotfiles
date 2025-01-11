@@ -118,6 +118,14 @@ version = 3
   newline = true
 
   [[blocks.segments]]
+    type = "python"
+    style = "powerline"
+    powerline_symbol = ""
+    foreground = "#100e23"
+    background = "#906cff"
+    template = "  {{ .Full }} "
+
+  [[blocks.segments]]
     template = '➜ '
     foreground = '#f1184c'
     type = 'text'
