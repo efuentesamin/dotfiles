@@ -1,6 +1,3 @@
 
 # For Celes
-export CLOUD_SERVICE_PROVIDER=GOOGLE
-
-export GOOGLE_APPLICATION_CREDENTIALS=$HOME/celes-platform-dev-69c7e22dbe9b.json
 
