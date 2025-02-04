@@ -9,7 +9,7 @@ local config = wezterm.config_builder()
 config.font = wezterm.font("CodeNewRoman Nerd Font Mono")
 config.font_size = 16
 
-config.enable_tab_bar = false
+config.enable_tab_bar = true
 
 config.window_decorations = "RESIZE"
 

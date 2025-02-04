@@ -1,8 +1,11 @@
 export XDG_CONFIG_HOME=$HOME/.config
 
-eval "$(zoxide init zsh)"
+{{ if eq .chezmoi.username "efuentesamin" }}
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/marcduiker.toml)"
 #eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/marcduiker.json)"
+{{ end }}
+
+eval "$(zoxide init zsh)"
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -38,18 +41,11 @@ setopt hist_verify
 bindkey '^[[A' history-search-backward
 bindkey '^[[B' history-search-forward
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+{{ if eq .chezmoi.username "efuentesamin" }}
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/efuentesamin/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/efuentesamin/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/efuentesamin/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/efuentesamin/google-cloud-sdk/completion.zsh.inc'; fi
+{{ end }}
 
