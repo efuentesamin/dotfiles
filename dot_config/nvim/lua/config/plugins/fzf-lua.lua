@@ -5,4 +5,13 @@ return {
 	-- or if using mini.icons/mini.nvim
 	-- dependencies = { "echasnovski/mini.icons" },
 	opts = {},
+	config = function()
+		require("fzf-lua").setup({
+			keymap = {
+				fzf = {
+					["ctrl-q"] = "select-all+accept",
+				},
+			},
+		})
+	end,
 }

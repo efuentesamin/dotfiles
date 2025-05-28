@@ -149,5 +149,5 @@ customCommands:
         title: "Commit"
         body: "Commit with the message '{{.Form.Emoji}} {{.Form.Type}}({{.Form.Scope}}): {{.Form.Message}}'. Is this okay?"
 
-    command: "git commit -m '{{.Form.Emoji}} {{.Form.Type}}{{if .Form.Scope}}({{.Form.Scope}}){{end}}{{if .Form.Footer}}!{{end}}: {{.Form.Message}}' {{if .Form.Body}}-m '{{.Form.Body}}'{{end}} {{if .Form.Footer}}-m 'BREAKING CHANGE: {{.Form.Footer}}'{{end}} --no-verify"
+    command: "git commit -m '{{.Form.Emoji}} {{.Form.Type}}{{if .Form.Scope}}({{.Form.Scope}}){{end}}{{if .Form.Footer}}!{{end}}: {{.Form.Message}}' {{if .Form.Body}}-m '{{.Form.Body}}'{{end}} {{if .Form.Footer}}-m 'BREAKING CHANGE: {{.Form.Footer}}'{{end}}"
     loadingText: "Commiting..."

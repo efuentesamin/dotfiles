@@ -11,7 +11,12 @@ return {
 		mason_lspconfig.setup({
 			-- list of servers for mason to install
 			ensure_installed = {
+				"bashls",
 				"ts_ls",
+				"jsonls",
+				"ast_grep",
+				"yamlls",
+				"angularls",
 				"html",
 				"cssls",
 				"tailwindcss",
@@ -52,6 +57,8 @@ return {
 				keymap.set("n", "ga", "<cmd>Lspsaga code_action<cr>", opts) -- see available code actions
 				opts.desc = "Smart rename"
 				keymap.set("n", "gr", "<cmd>Lspsaga rename<cr>", opts) -- smart rename
+				opts.desc = "Go to Window"
+				keymap.set("n", "gs", "<cmd>lua require('winpick').show_picker()<cr>", opts) -- smart rename
 			end,
 		})
 
