@@ -85,17 +85,11 @@ return {
 
 			-- Mappings.
 			-- typescript specific keymaps (e.g. rename file and update imports)
-			if client.name == "ts_ls" then
+			if client.name == "ts_ls" or client.name == "typescript-tools" then
 				local opts = { buffer = bufnr, silent = true }
-				keymap.set("n", "tr", "<cmd>TypescriptRenameFile<cr>", opts) -- rename file and update imports
-				keymap.set("n", "to", "<cmd>TypescriptOrganizeImports<cr>", opts) -- organize imports (not in youtube nvim video)
-				-- vim.keymap.set("n", "<T-u>", "<cmd>TypescriptRemoveUnused<cr>", bufopts) -- remove unused variables (not in youtube nvim video)
+				keymap.set("n", "tr", "<cmd>TSToolsRenameFile<cr>", opts) -- rename file and update imports
+				keymap.set("n", "to", "<cmd>TSToolsOrganizeImports<cr>", opts) -- organize imports
 			end
-
-			--[[ if client.server_capabilities.documentSymbolProvider then
-				require("nvim-navic").attach(client, bufnr)
-				require("nvim-navbuddy").attach(client, bufnr)
-			end ]]
 		end
 
 		-- import lspconfig plugin

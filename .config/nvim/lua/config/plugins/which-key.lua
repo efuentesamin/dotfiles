@@ -45,7 +45,7 @@ return {
 			{ "<leader>st", "<cmd>FzfLua live_grep resume=true<cr>", desc = "Text" },
 			{ "<leader>sw", "<cmd>FzfLua grep_cWORD resume=true<cr>", desc = "WORD" },
 			{ "<leader>sc", "<cmd>FzfLua commands resume=true<cr>", desc = "Commands" },
-			{ "<leader>sc", "<cmd>FzfLua highlights resume=true<cr>", desc = "Highlights" },
+			{ "<leader>sh", "<cmd>FzfLua highlights resume=true<cr>", desc = "Highlights" },
 			{ "<leader>t", group = "Tabs" },
 			{ "<leader>to", "<cmd>tabnew<cr>", desc = "Open new tab" },
 			{ "<leader>tn", "<cmd>tabn<cr>", desc = "Select next tab" },

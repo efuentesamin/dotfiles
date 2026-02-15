@@ -21,11 +21,6 @@ return {
 			definition = {
 				edit = "<cr>",
 			},
-			-- ui = {
-			-- 	colors = {
-			-- 		normal_bg = "#022746",
-			-- 	},
-			-- },
 			finder = {
 				keys = {
 					vsplit = "v",

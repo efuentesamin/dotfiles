@@ -12,6 +12,12 @@ local g = vim.g -- Global variables
 local opt = vim.opt -- Set options (global/buffer/windows-scoped)
 
 -----------------------------------------------------------
+-- Leader keys (must be set before lazy.nvim loads)
+-----------------------------------------------------------
+g.mapleader = " "
+g.maplocalleader = "\\"
+
+-----------------------------------------------------------
 -- General
 -----------------------------------------------------------
 opt.mouse = "a" -- Enable mouse support
@@ -23,10 +29,8 @@ opt.cursorline = true
 -----------------------------------------------------------
 -- Content
 -----------------------------------------------------------
-opt.autoread = true
 opt.path:append("**")
 opt.wildignore:append("*/node_modules/*")
-opt.wildmenu = true
 opt.showmatch = true
 opt.title = true
 opt.laststatus = 3
@@ -39,18 +43,7 @@ vim.o.showtabline = 2
 opt.foldcolumn = "2"
 opt.foldlevel = 20
 opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
-
------------------------------------------------------------
--- Syntax
------------------------------------------------------------
-opt.syntax = "on"
-
------------------------------------------------------------
--- Encoding
------------------------------------------------------------
-opt.encoding = "utf-8"
-opt.fileencodings = "utf-8"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 -----------------------------------------------------------
 -- Line numbers
@@ -65,7 +58,6 @@ opt.tabstop = 4
 opt.softtabstop = 4
 opt.shiftwidth = 4
 opt.expandtab = true
-opt.autoindent = true
 opt.smartindent = true
 
 -----------------------------------------------------------
@@ -78,8 +70,6 @@ opt.wrap = false
 -----------------------------------------------------------
 opt.ignorecase = true
 opt.smartcase = true
-opt.incsearch = true
-opt.hlsearch = true
 
 -----------------------------------------------------------
 -- Appearance
@@ -108,9 +98,7 @@ opt.linebreak = true -- Wrap on word boundary
 -----------------------------------------------------------
 -- Memory, CPU
 -----------------------------------------------------------
-opt.hidden = true -- Enable background buffers
 opt.history = 100 -- Remember N lines in history
--- opt.lazyredraw = true -- Faster scrolling
 opt.synmaxcol = 240 -- Max column for syntax highlight
 opt.updatetime = 250 -- ms to wait for trigger an event
 
@@ -120,17 +108,13 @@ opt.updatetime = 250 -- ms to wait for trigger an event
 -- Disable nvim intro
 opt.shortmess:append("sI")
 
--- -- Disable builtin plugins
+-- Disable builtin plugins
 local disabled_built_ins = {
 	"2html_plugin",
 	"getscript",
 	"getscriptPlugin",
 	"gzip",
 	"logipat",
-	--"netrw",
-	--"netrwPlugin",
-	--"netrwSettings",
-	--"netrwFileHandlers",
 	"matchit",
 	"tar",
 	"tarPlugin",

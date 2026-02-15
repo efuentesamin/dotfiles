@@ -13,10 +13,21 @@ autocmd("TextYankPost", {
 	end,
 })
 
--- Remove whitespace on save
+-- Remove whitespace on save (exclude filetypes where trailing whitespace matters)
 autocmd("BufWritePre", {
-	pattern = "",
-	command = ":%s/\\s\\+$//e",
+	pattern = "*",
+	callback = function()
+		local ft = vim.bo.filetype
+		local exclude = { "markdown", "diff", "patch", "mail" }
+		for _, v in ipairs(exclude) do
+			if ft == v then
+				return
+			end
+		end
+		local save = vim.fn.winsaveview()
+		vim.cmd([[%s/\s\+$//e]])
+		vim.fn.winrestview(save)
+	end,
 })
 
 -- Don't auto commenting new lines

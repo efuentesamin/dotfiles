@@ -1,7 +1,6 @@
 return {
 	"williamboman/mason.nvim",
-	dependencies = {
-	},
+	dependencies = {},
 	config = function()
 		local mason = require("mason")
 

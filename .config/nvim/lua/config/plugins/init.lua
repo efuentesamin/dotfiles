@@ -7,7 +7,8 @@ return {
 	"moll/vim-bbye",
 	"kazhala/close-buffers.nvim",
 	{
-		"jose-elias-alvarez/typescript.nvim",
-		cmd = { "TypescriptRenameFile", "TypescriptOrganizeImports", "TypescriptRemoveUnused" },
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		opts = {},
 	},
 }
