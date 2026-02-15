@@ -1,21 +1,22 @@
 export XDG_CONFIG_HOME=$HOME/.config
-
-
-
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/bin:/usr/local/sbin:$PATH
 
 export EDITOR='nvim'
 export VISUAL='nvim'
 
+# Oh My Posh
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/marcduiker.toml)"
 #eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/marcduiker.json)"
 
-eval "$(zoxide init zsh)"
-
+# Zsh Autosuggestions and Syntax Highlighting
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source "$HOME/.fzf"
-source "$HOME/.aliases"
+
+# Zsh Completion
+zstyle ':completion:*' menu select
+
+# Zoxide
+eval "$(zoxide init zsh)"
 
 plugins=(
     git
@@ -23,12 +24,13 @@ plugins=(
     web-search
     dirhistory
     z
-    poetry
 )
 
-# User configuration
+# Fzf
+source "$HOME/.fzf"
 
-zstyle ':completion:*' menu select
+# Aliases
+source "$HOME/.aliases"
 
 # ----- Bat (better cat) -----
 export BAT_THEME=tokyonight_night
@@ -43,35 +45,27 @@ setopt hist_ignore_dups
 setopt hist_verify
 
 # completion using arrow keys (based on history)
-bindkey '^[[A' history-search-backward
-bindkey '^[[B' history-search-forward
+bindkey '^[[A' history-beginning-search-backward
+bindkey '^[[B' history-beginning-search-forward
 
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+  *) export PATH="$PATH:$PNPM_HOME" ;;
 esac
 # pnpm end
 
-#eval "$(uv generate-shell-completion zsh)"
-#eval "$(uvx --generate-shell-completion zsh)"
-
+# nvm
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# go
 export GOROOT="/usr/local/go"
 export GOPATH="$HOME/go"
-export PATH="$GOROOT/bin:$GOPATH/bin:$PATH"
+export PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
 
-# Load Angular CLI autocompletion.
-#source <(ng completion script)
-
-# The next line updates PATH for the Google Cloud SDK.
-#if [ -f '/Users/efuentesamin/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/efuentesamin/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-#if [ -f '/Users/efuentesamin/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/efuentesamin/google-cloud-sdk/completion.zsh.inc'; fi
-
-
+# uv
+# eval "$(uv generate-shell-completion zsh)"
+# eval "$(uvx --generate-shell-completion zsh)"

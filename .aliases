@@ -1,0 +1,11 @@
+# ----- Chezmoi -----
+alias cz="chezmoi"
+
+# ---- Eza (better ls) -----
+alias ls="eza --color=always --icons=always"
+alias lst="eza --tree --level=2 --color=always --icons=always"
+
+# ----- thefuck -----
+eval $(thefuck --alias)
+eval $(thefuck --alias fk)
+
