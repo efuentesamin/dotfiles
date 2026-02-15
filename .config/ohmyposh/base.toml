@@ -1,0 +1,133 @@
+console_title_template = '{{ if .Root }}(Admin) {{ end }}{{ .Folder }}'
+version = 3
+
+[transient_prompt]
+  template = ' '
+  foreground = '#FEF5ED'
+  background = 'transparent'
+
+[upgrade]
+  source = 'cdn'
+  interval = '168h'
+  auto = false
+  notice = false
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    template = ''
+    foreground = '#242424'
+    powerline_symbol = ''
+    background = '#f1184c'
+    type = 'root'
+    style = 'powerline'
+
+  [[blocks.segments]]
+    leading_diamond = ''
+    template = ' {{ if .WSL }}WSL at {{ end }}{{.Icon}} '
+    foreground = '#3A86FF'
+    background = '#343434'
+    type = 'os'
+    style = 'diamond'
+
+  [[blocks.segments]]
+    powerline_symbol = ''
+    template = ' {{ if .SSHSession }} {{ end }}{{ .UserName }}@{{ .HostName }} '
+    foreground = '#33DD2D'
+    background = '#262626'
+    type = 'session'
+    style = 'powerline'
+
+    [blocks.segments.properties]
+      display_host = true
+
+  [[blocks.segments]]
+    powerline_symbol = ''
+    template = ' {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }} '
+    foreground = '#ffffff'
+    background = '#6e4ae3'
+    type = 'git'
+    style = 'powerline'
+
+    [blocks.segments.properties]
+      branch_icon = ' '
+      fetch_stash_count = true
+      fetch_status = true
+      fetch_upstream_icon = true
+      fetch_worktree_count = true
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'right'
+
+  [[blocks.segments]]
+    template = ' {{ .FormattedMs }}s <#ffffff></>'
+    foreground = '#a9ffb4'
+    type = 'executiontime'
+    style = 'diamond'
+
+    [blocks.segments.properties]
+      style = 'dallas'
+      threshold = 0.0
+
+  [[blocks.segments]]
+    template = ' {{ .CurrentDate | date .Format }} '
+    foreground = '#6e4ae3'
+    type = 'time'
+    style = 'diamond'
+
+    [blocks.segments.properties]
+      time_format = 'Jan _2 15:04:05'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    leading_diamond = ""
+    trailing_diamond = ""
+    template = ' {{ .Path }}'
+    foreground = '#3A86FF'
+    background = '#262626'
+    type = 'path'
+    style = 'diamond'
+
+    [blocks.segments.properties]
+      folder_icon = ''
+      folder_separator_icon = '  '
+      home_icon = 'home'
+      style = 'agnoster_full'
+
+  [[blocks.segments]]
+    template = '  '
+    foreground = '#A9FFB4'
+    type = 'status'
+    style = 'plain'
+    foreground_templates = ['{{ if gt .Code 0 }}#ef5350{{ end }}']
+
+    [blocks.segments.properties]
+      always_enabled = true
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = "python"
+    style = "powerline"
+    powerline_symbol = ""
+    foreground = "#100e23"
+    background = "#906cff"
+    template = "  {{ .Full }} "
+
+  [[blocks.segments]]
+    template = '➜ '
+    foreground = '#f1184c'
+    type = 'text'
+    style = 'plain'
+
