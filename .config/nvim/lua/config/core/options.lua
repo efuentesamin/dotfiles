@@ -31,7 +31,7 @@ opt.showmatch = true
 opt.title = true
 opt.laststatus = 3
 opt.scrolloff = 10
---vim.o.showtabline = 2
+vim.o.showtabline = 2
 
 -----------------------------------------------------------
 -- Treesitter based folding
