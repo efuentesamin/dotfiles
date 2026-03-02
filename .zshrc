@@ -32,6 +32,8 @@ source "$HOME/.fzf"
 # Aliases
 source "$HOME/.aliases"
 
+source "$HOME/.secrets"
+
 # ----- Bat (better cat) -----
 export BAT_THEME=tokyonight_night
 
