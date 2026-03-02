@@ -19,15 +19,15 @@ config.window_padding = {
 	bottom = 5,
 }
 
-config.window_background_opacity = 0.79
-config.macos_window_background_blur = 15
+config.window_background_opacity = 0.80
+config.macos_window_background_blur = 8
 
 config.color_scheme = "Batman"
 
 -- my coolnight colorscheme:
 config.colors = {
 	foreground = "#CBE0F0",
-	background = "#010b17",
+	background = "#000000",
 	cursor_bg = "#47FF9C",
 	cursor_border = "#47FF9C",
 	cursor_fg = "#011423",
