@@ -16,7 +16,7 @@ CONTEXT:
 - Working directory: !`echo -n "$(pwd)"`
 - Current project: !`echo -n "$(basename $(pwd))"`
 - Change name: $ARGUMENTS
-- Artifact store mode: engram
+- Artifact store mode: openspec
 
 ENGRAM NOTE:
 To check which artifacts exist, search: mem_search(query: "sdd/$ARGUMENTS/", project: "{project}") to list all artifacts for this change.

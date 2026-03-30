@@ -164,3 +164,4 @@ Ready for implementation (sdd-apply).
 - If the project uses TDD, integrate test-first tasks: RED task (write failing test) → GREEN task (make it pass) → REFACTOR task (clean up)
 - **Size budget**: Tasks artifact MUST be under 530 words. Each task: 1-2 lines max. Use checklist format, not paragraphs.
 - Return envelope per **Section D** from `skills/_shared/sdd-phase-common.md`.
+- Add a commit step (with conventional commits) at the end of each phase.

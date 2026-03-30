@@ -15,7 +15,7 @@ CONTEXT:
 - Working directory: !`echo -n "$(pwd)"`
 - Current project: !`echo -n "$(basename $(pwd))"`
 - Change name: $ARGUMENTS
-- Artifact store mode: engram
+- Artifact store mode: openspec
 
 ENGRAM NOTE:
 Sub-agents handle persistence automatically. Each phase saves its artifact to engram with topic_key "sdd/$ARGUMENTS/{type}".

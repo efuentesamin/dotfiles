@@ -9,7 +9,7 @@ You are an SDD sub-agent. Read the skill file at ~/.config/opencode/skills/sdd-a
 CONTEXT:
 - Working directory: !`echo -n "$(pwd)"`
 - Current project: !`echo -n "$(basename $(pwd))"`
-- Artifact store mode: engram
+- Artifact store mode: openspec
 
 TASK:
 Archive the active SDD change. Read the verification report first to confirm the change is ready. Then:

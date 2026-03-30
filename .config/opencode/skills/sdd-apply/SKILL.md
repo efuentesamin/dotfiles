@@ -195,4 +195,5 @@ If none, say "None."}
 - Apply any `rules.apply` from `openspec/config.yaml`
 - If TDD mode is detected (Step 3), ALWAYS follow the RED → GREEN → REFACTOR cycle — never skip RED (writing the failing test first)
 - When running tests during TDD, run ONLY the relevant test file/suite, not the entire test suite (for speed)
+- Run verification commands (testing, linter, typings) at the end of each phase before finishing it.
 - Return envelope per **Section D** from `skills/_shared/sdd-phase-common.md`.

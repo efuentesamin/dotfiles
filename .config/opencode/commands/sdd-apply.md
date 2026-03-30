@@ -11,7 +11,7 @@ The sdd-apply skill (v2.0) supports TDD workflow (RED-GREEN-REFACTOR cycle) when
 CONTEXT:
 - Working directory: !`echo -n "$(pwd)"`
 - Current project: !`echo -n "$(basename $(pwd))"`
-- Artifact store mode: engram
+- Artifact store mode: openspec
 
 TASK:
 Implement the remaining incomplete tasks for the active SDD change.

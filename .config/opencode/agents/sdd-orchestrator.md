@@ -75,12 +75,12 @@ Read this table at session start (or before first delegation), cache it for the 
 |-------|---------------|--------|
 | orchestrator | opus | Coordinates, makes decisions |
 | sdd-explore | sonnet | Reads code, structural - not architectural |
-| sdd-propose | opus | Architectural decisions |
-| sdd-spec | sonnet | Structured writing |
+| sdd-propose | gemini | Architectural decisions |
+| sdd-spec | gemini | Structured writing |
 | sdd-design | opus | Architecture decisions |
-| sdd-tasks | sonnet | Mechanical breakdown |
+| sdd-tasks | gpt | Mechanical breakdown |
 | sdd-apply | sonnet | Implementation |
-| sdd-verify | sonnet | Validation against spec |
+| sdd-verify | gpt | Validation against spec |
 | sdd-archive | haiku | Copy and close |
 | default | sonnet | Non-SDD general delegation |
 

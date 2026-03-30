@@ -10,7 +10,7 @@ CONTEXT:
 - Working directory: !`echo -n "$(pwd)"`
 - Current project: !`echo -n "$(basename $(pwd))"`
 - Topic to explore: $ARGUMENTS
-- Artifact store mode: engram
+- Artifact store mode: openspec
 
 TASK:
 Explore the topic "$ARGUMENTS" in this codebase. Investigate the current state, identify affected areas, compare approaches, and provide a recommendation.
