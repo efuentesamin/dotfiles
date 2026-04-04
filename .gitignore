@@ -3,3 +3,5 @@
 .config/nvim/lua/.luarc.json
 
 .secrets
+
+main.js
