@@ -1,6 +1,0 @@
------------------------------------------------------------
--- Custom utility functions
------------------------------------------------------------
--- Add custom functions here as needed.
--- Avoid polluting the global namespace; use a local table
--- and return it, or attach to _G explicitly.
