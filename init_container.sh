@@ -1,5 +1,6 @@
 #!/bin/sh
 
+sudo apt update && sudo apt install build-essential cmake clang libclang-dev
 curl https://sh.rustup.rs -sSf | sh -s -- -y
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
@@ -20,4 +21,5 @@ brew install jesseduffield/lazydocker/lazydocker
 brew install posting
 brew install nvim
 brew install stow
-. $HOME/.cargo/env && cargo install rainfrog && cargo install --locked tree-sitter-cli
+brew install rainfrog
+. $HOME/.cargo/env && cargo install --locked tree-sitter-cli

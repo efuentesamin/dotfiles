@@ -1,6 +1,9 @@
 export XDG_CONFIG_HOME=$HOME/.config
 export PATH=$HOME/.local/bin:/usr/local/sbin:$PATH
 
+# . "$HOME/.local/bin/env"
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+
 export EDITOR='nvim'
 export VISUAL='nvim'
 
