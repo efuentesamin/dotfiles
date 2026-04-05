@@ -2,6 +2,7 @@
 
 sudo apt update && sudo apt install build-essential cmake clang libclang-dev
 curl https://sh.rustup.rs -sSf | sh -s -- -y
+export NONINTERACTIVE=1
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
 brew install tmux
