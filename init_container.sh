@@ -19,4 +19,5 @@ brew install jesseduffield/lazygit/lazygit
 brew install jesseduffield/lazydocker/lazydocker
 brew install posting
 brew install nvim
+brew install stow
 . $HOME/.cargo/env && cargo install rainfrog && cargo install --locked tree-sitter-cli
