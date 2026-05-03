@@ -116,9 +116,11 @@ FOR EACH TASK:
 └── Note any issues or deviations
 ```
 
-### Step 4: Mark Tasks Complete
+### Step 4: Mark Tasks Complete (IMMEDIATELY)
 
-Update `tasks.md` — change `- [ ]` to `- [x]` for completed tasks:
+**CRITICAL**: Mark each task complete IMMEDIATELY after implementing it — do NOT batch marks at the end of the phase.
+
+Update `tasks.md` — change `- [ ]` to `- [x]` for each completed task AS SOON as you finish it:
 
 ```markdown
 ## Phase 1: Foundation
@@ -137,6 +139,42 @@ Follow **Section C** from `skills/_shared/sdd-phase-common.md`.
 - topic_key: `sdd/{change-name}/apply-progress`
 - type: `architecture`
 - Also update the tasks artifact with `[x]` marks via `mem_update` (engram) or file edit (openspec/hybrid).
+
+### Step 5.5: Commit Phase Progress
+
+After completing ALL tasks in a phase/layer group (e.g., "## Phase 1: Domain" or "## Application Layer"), create a conventional commit:
+
+1. **Run verification first**:
+   ```bash
+   make lint  # or project equivalent
+   ```
+
+2. **Create conventional commit**:
+   ```bash
+   git add -A
+   git commit -m "<type>(<scope>): <description>
+
+   Implemented tasks:
+   - T-XX: <task description>
+   - T-YY: <task description>
+   "
+   ```
+
+   **Conventional commit types**:
+   - `feat`: New feature or capability
+   - `fix`: Bug fix
+   - `refactor`: Code change that neither fixes a bug nor adds a feature
+   - `test`: Adding or updating tests
+   - `docs`: Documentation only changes
+
+   **Scope**: Use the change name (e.g., `benefits-search-filters`)
+
+3. **Phase boundaries for commits** (read from `tasks.md`):
+   - Each `## Phase N:` or `## Layer:` header defines a commit boundary
+   - Complete ALL tasks in a phase → run verification → commit → move to next phase
+
+**NEVER commit mid-phase.** Wait until all tasks in the phase are done AND verification passes.
+**NEVER skip phase commits.** Each phase gets its own commit for traceability.
 
 ### Step 6: Return Summary
 
@@ -187,7 +225,7 @@ If none, say "None."}
 - ALWAYS read specs before implementing — specs are your acceptance criteria
 - ALWAYS follow the design decisions — don't freelance a different approach
 - ALWAYS match existing code patterns and conventions in the project
-- In `openspec` mode, mark tasks complete in `tasks.md` AS you go, not at the end
+- Mark tasks complete in `tasks.md` IMMEDIATELY after completing each one — do NOT batch marks at the end (applies to ALL artifact store modes: engram, openspec, hybrid, none)
 - If you discover the design is wrong or incomplete, NOTE IT in your return summary — don't silently deviate
 - If a task is blocked by something unexpected, STOP and report back
 - NEVER implement tasks that weren't assigned to you
@@ -195,5 +233,5 @@ If none, say "None."}
 - Apply any `rules.apply` from `openspec/config.yaml`
 - If TDD mode is detected (Step 3), ALWAYS follow the RED → GREEN → REFACTOR cycle — never skip RED (writing the failing test first)
 - When running tests during TDD, run ONLY the relevant test file/suite, not the entire test suite (for speed)
-- Run verification commands (testing, linter, typings) at the end of each phase before finishing it.
+- Run verification commands (linter, typings) at the end of each phase, THEN create a conventional commit before moving to the next phase.
 - Return envelope per **Section D** from `skills/_shared/sdd-phase-common.md`.

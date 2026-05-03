@@ -5,3 +5,5 @@
 .secrets
 
 main.js
+
+.DS_Store

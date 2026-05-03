@@ -1,0 +1,14 @@
+{
+  "models": {
+    "sdd-apply": "ollama/gemma4:e4b",
+    "sdd-archive": "ollama/gemma4:e4b",
+    "sdd-design": "ollama/gemma4:e4b",
+    "sdd-explore": "ollama/gemma4:e4b",
+    "sdd-init": "ollama/gemma4:e4b",
+    "sdd-orchestrator": "ollama/gemma4:e4b",
+    "sdd-propose": "ollama/gemma4:e4b",
+    "sdd-spec": "ollama/gemma4:e4b",
+    "sdd-tasks": "ollama/gemma4:e4b",
+    "sdd-verify": "ollama/gemma4:e4b"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "models": {
+    "sdd-apply": "github-copilot/claude-sonnet-4.6",
+    "sdd-archive": "github-copilot/claude-haiku-4.5",
+    "sdd-design": "github-copilot/claude-opus-4.5",
+    "sdd-explore": "github-copilot/gpt-5.4",
+    "sdd-init": "github-copilot/gpt-4.1",
+    "sdd-verify": "github-copilot/gemini-3.1-pro-preview",
+    "sdd-tasks": "github-copilot/claude-haiku-4.5",
+    "sdd-orchestrator": "github-copilot/claude-opus-4.5",
+    "sdd-spec": "github-copilot/claude-haiku-4.5",
+    "sdd-propose": "github-copilot/claude-sonnet-4.6"
+  }
+}

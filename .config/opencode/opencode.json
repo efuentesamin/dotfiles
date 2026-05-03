@@ -1,199 +1,459 @@
 {
-    "$schema": "https://opencode.ai/config.json",
-    "agent": {
-        "gentleman": {
-            "description": "Senior Architect mentor - helpful first, challenging when it matters",
-            "mode": "primary",
-            "prompt": "{file:./agents/gentleman.md}",
-            "tools": {
-                "edit": true,
-                "write": true
-            }
-        },
-        "morpheus": {
-            "description": "Senior Architect mentor - helpful first, challenging when it matters",
-            "mode": "primary",
-            "permission": {
-                "edit": "allow",
-                "write": "allow"
-            },
-            "prompt": "{file:./agents/morpheus.md}"
-        },
-        "sdd-apply": {
-            "description": "Implement code changes from task definitions",
-            "hidden": true,
-            "mode": "subagent",
-            "model": "github-copilot/claude-sonnet-4.6",
-            "prompt": "{file:./agents/sdd-apply.md}",
-            "tools": {
-                "bash": true,
-                "edit": true,
-                "read": true,
-                "write": true
-            }
-        },
-        "sdd-archive": {
-            "description": "Archive completed change artifacts",
-            "hidden": true,
-            "mode": "subagent",
-            "model": "github-copilot/claude-haiku-4.5",
-            "prompt": "{file:./agents/sdd-archive.md}",
-            "tools": {
-                "bash": true,
-                "edit": true,
-                "read": true,
-                "write": true
-            }
-        },
-        "sdd-design": {
-            "description": "Create technical design from proposals",
-            "hidden": true,
-            "mode": "subagent",
-            "model": "github-copilot/claude-opus-4.6",
-            "prompt": "{file:./agents/sdd-design.md}",
-            "tools": {
-                "bash": true,
-                "edit": true,
-                "read": true,
-                "write": true
-            }
-        },
-        "sdd-explore": {
-            "description": "Investigate codebase and think through ideas",
-            "hidden": true,
-            "mode": "subagent",
-            "model": "github-copilot/claude-sonnet-4.6",
-            "prompt": "{file:./agents/sdd-explore.md}",
-            "tools": {
-                "bash": true,
-                "edit": true,
-                "read": true,
-                "write": true
-            }
-        },
-        "sdd-init": {
-            "description": "Bootstrap SDD context and project configuration",
-            "hidden": true,
-            "mode": "subagent",
-            "model": "github-copilot/claude-sonnet-4.6",
-            "prompt": "{file:./agents/sdd-init.md}",
-            "tools": {
-                "bash": true,
-                "edit": true,
-                "read": true,
-                "write": true
-            }
-        },
-        "sdd-orchestrator": {
-            "description": "Agent Teams Orchestrator - coordinates sub-agents, never does work inline",
-            "mode": "primary",
-            "permission": {
-                "task": {
-                    "*": "deny",
-                    "sdd-*": "allow"
-                }
-            },
-            "prompt": "{file:./agents/sdd-orchestrator.md}",
-            "tools": {
-                "bash": true,
-                "delegate": true,
-                "delegation_list": true,
-                "delegation_read": true,
-                "edit": true,
-                "read": true,
-                "write": true
-            }
-        },
-        "sdd-propose": {
-            "description": "Create change proposals from explorations",
-            "hidden": true,
-            "mode": "subagent",
-            "model": "github-copilot/gemini-3.1-pro-preview",
-            "prompt": "{file:./agents/sdd-propose.md}",
-            "tools": {
-                "bash": true,
-                "edit": true,
-                "read": true,
-                "write": true
-            }
-        },
-        "sdd-spec": {
-            "description": "Write detailed specifications from proposals",
-            "hidden": true,
-            "mode": "subagent",
-            "model": "github-copilot/gemini-3.1-pro-preview",
-            "prompt": "{file:./agents/sdd-spec.md}",
-            "tools": {
-                "bash": true,
-                "edit": true,
-                "read": true,
-                "write": true
-            }
-        },
-        "sdd-tasks": {
-            "description": "Break down specs and designs into implementation tasks",
-            "hidden": true,
-            "mode": "subagent",
-            "model": "github-copilot/gpt-5.4",
-            "prompt": "{file:./agents/sdd-tasks.md}",
-            "tools": {
-                "bash": true,
-                "edit": true,
-                "read": true,
-                "write": true
-            }
-        },
-        "sdd-verify": {
-            "description": "Validate implementation against specs",
-            "hidden": true,
-            "mode": "subagent",
-            "model": "github-copilot/gpt-5.4",
-            "prompt": "{file:./agents/sdd-verify.md}",
-            "tools": {
-                "bash": true,
-                "edit": true,
-                "read": true,
-                "write": true
-            }
-        }
+  "$schema": "https://opencode.ai/config.json",
+  "server": {
+    "port": 4096
+  },
+  "autoupdate": true,
+  "agent": {
+    "gentleman": {
+      "prompt": "{file:./agents/gentleman.md}",
+      "tools": {
+        "edit": true,
+        "write": true
+      },
+      "description": "Senior Architect mentor - helpful first, challenging when it matters",
+      "mode": "primary",
+      "options": {},
+      "permission": {
+        "edit": "allow"
+      }
     },
-    "autoupdate": true,
-    "mcp": {
-        "context7": {
-            "enabled": true,
-            "type": "remote",
-            "url": "https://mcp.context7.com/mcp"
-        },
-        "engram": {
-            "command": [
-                "/usr/local/bin/engram",
-                "mcp",
-                "--tools=agent"
-            ],
-            "type": "local"
-        }
+    "morpheus": {
+      "prompt": "{file:./agents/morpheus.md}",
+      "description": "Senior Architect mentor - helpful first, challenging when it matters",
+      "mode": "primary",
+      "options": {},
+      "permission": {
+        "edit": "allow",
+        "write": "allow"
+      }
     },
-    "permission": {
-        "bash": {
-            "*": "allow",
-            "git commit *": "ask",
-            "git push": "ask",
-            "git push *": "ask",
-            "git push --force *": "ask",
-            "git rebase *": "ask",
-            "git reset --hard *": "ask"
-        },
-        "read": {
-            "*": "allow",
-            "**/.env": "deny",
-            "**/.env.*": "deny",
-            "**/credentials.json": "deny",
-            "**/secrets/**": "deny",
-            "*.env": "deny",
-            "*.env.*": "deny"
-        }
+    "sdd-apply": {
+      "model": "github-copilot/claude-sonnet-4.6",
+      "prompt": "{file:./agents/sdd-apply.md}",
+      "tools": {
+        "bash": true,
+        "edit": true,
+        "read": true,
+        "write": true
+      },
+      "description": "Implement code changes from task definitions",
+      "mode": "subagent",
+      "hidden": true,
+      "options": {},
+      "permission": {
+        "bash": "allow",
+        "edit": "allow",
+        "read": "allow"
+      }
     },
-    "server": {
-        "port": 4096
+    "sdd-archive": {
+      "model": "github-copilot/claude-haiku-4.5",
+      "prompt": "{file:./agents/sdd-archive.md}",
+      "tools": {
+        "bash": true,
+        "edit": true,
+        "read": true,
+        "write": true
+      },
+      "description": "Archive completed change artifacts",
+      "mode": "subagent",
+      "hidden": true,
+      "options": {},
+      "permission": {
+        "bash": "allow",
+        "edit": "allow",
+        "read": "allow"
+      }
+    },
+    "sdd-design": {
+      "model": "github-copilot/claude-opus-4.5",
+      "prompt": "{file:./agents/sdd-design.md}",
+      "tools": {
+        "bash": true,
+        "edit": true,
+        "read": true,
+        "write": true
+      },
+      "description": "Create technical design from proposals",
+      "mode": "subagent",
+      "hidden": true,
+      "options": {},
+      "permission": {
+        "bash": "allow",
+        "edit": "allow",
+        "read": "allow"
+      }
+    },
+    "sdd-explore": {
+      "model": "github-copilot/gpt-5.4",
+      "prompt": "{file:./agents/sdd-explore.md}",
+      "tools": {
+        "bash": true,
+        "edit": true,
+        "read": true,
+        "write": true
+      },
+      "description": "Investigate codebase and think through ideas",
+      "mode": "subagent",
+      "hidden": true,
+      "options": {},
+      "permission": {
+        "bash": "allow",
+        "edit": "allow",
+        "read": "allow"
+      }
+    },
+    "sdd-init": {
+      "model": "github-copilot/gpt-4.1",
+      "prompt": "{file:./agents/sdd-init.md}",
+      "tools": {
+        "bash": true,
+        "edit": true,
+        "read": true,
+        "write": true
+      },
+      "description": "Bootstrap SDD context and project configuration",
+      "mode": "subagent",
+      "hidden": true,
+      "options": {},
+      "permission": {
+        "bash": "allow",
+        "edit": "allow",
+        "read": "allow"
+      }
+    },
+    "sdd-orchestrator": {
+      "model": "github-copilot/claude-opus-4.5",
+      "prompt": "{file:./agents/sdd-orchestrator.md}",
+      "tools": {
+        "bash": true,
+        "delegate": true,
+        "delegation_list": true,
+        "delegation_read": true,
+        "edit": true,
+        "read": true,
+        "write": true
+      },
+      "description": "Agent Teams Orchestrator - coordinates sub-agents, never does work inline",
+      "mode": "primary",
+      "options": {},
+      "permission": {
+        "bash": "allow",
+        "delegate": "allow",
+        "delegation_list": "allow",
+        "delegation_read": "allow",
+        "edit": "allow",
+        "read": "allow",
+        "task": {
+          "*": "deny",
+          "sdd-*": "allow"
+        }
+      }
+    },
+    "sdd-propose": {
+      "model": "github-copilot/claude-sonnet-4.6",
+      "prompt": "{file:./agents/sdd-propose.md}",
+      "tools": {
+        "bash": true,
+        "edit": true,
+        "read": true,
+        "write": true
+      },
+      "description": "Create change proposals from explorations",
+      "mode": "subagent",
+      "hidden": true,
+      "options": {},
+      "permission": {
+        "bash": "allow",
+        "edit": "allow",
+        "read": "allow"
+      }
+    },
+    "sdd-spec": {
+      "model": "github-copilot/claude-haiku-4.5",
+      "prompt": "{file:./agents/sdd-spec.md}",
+      "tools": {
+        "bash": true,
+        "edit": true,
+        "read": true,
+        "write": true
+      },
+      "description": "Write detailed specifications from proposals",
+      "mode": "subagent",
+      "hidden": true,
+      "options": {},
+      "permission": {
+        "bash": "allow",
+        "edit": "allow",
+        "read": "allow"
+      }
+    },
+    "sdd-tasks": {
+      "model": "github-copilot/claude-haiku-4.5",
+      "prompt": "{file:./agents/sdd-tasks.md}",
+      "tools": {
+        "bash": true,
+        "edit": true,
+        "read": true,
+        "write": true
+      },
+      "description": "Break down specs and designs into implementation tasks",
+      "mode": "subagent",
+      "hidden": true,
+      "options": {},
+      "permission": {
+        "bash": "allow",
+        "edit": "allow",
+        "read": "allow"
+      }
+    },
+    "sdd-verify": {
+      "model": "github-copilot/gemini-3.1-pro-preview",
+      "prompt": "{file:./agents/sdd-verify.md}",
+      "tools": {
+        "bash": true,
+        "edit": true,
+        "read": true,
+        "write": true
+      },
+      "description": "Validate implementation against specs",
+      "mode": "subagent",
+      "hidden": true,
+      "options": {},
+      "permission": {
+        "bash": "allow",
+        "edit": "allow",
+        "read": "allow"
+      }
+    },
+    "sdd-apply-fallback": {
+      "model": "github-copilot/claude-sonnet-4.6",
+      "prompt": "{file:./agents/sdd-apply.md}",
+      "tools": {
+        "bash": true,
+        "edit": true,
+        "read": true,
+        "write": true
+      },
+      "description": "Implement code changes from task definitions",
+      "mode": "subagent",
+      "hidden": true,
+      "options": {},
+      "permission": {
+        "bash": "allow",
+        "edit": "allow",
+        "read": "allow"
+      }
+    },
+    "sdd-archive-fallback": {
+      "model": "github-copilot/claude-haiku-4.5",
+      "prompt": "{file:./agents/sdd-archive.md}",
+      "tools": {
+        "bash": true,
+        "edit": true,
+        "read": true,
+        "write": true
+      },
+      "description": "Archive completed change artifacts",
+      "mode": "subagent",
+      "hidden": true,
+      "options": {},
+      "permission": {
+        "bash": "allow",
+        "edit": "allow",
+        "read": "allow"
+      }
+    },
+    "sdd-design-fallback": {
+      "model": "github-copilot/claude-opus-4.5",
+      "prompt": "{file:./agents/sdd-design.md}",
+      "tools": {
+        "bash": true,
+        "edit": true,
+        "read": true,
+        "write": true
+      },
+      "description": "Create technical design from proposals",
+      "mode": "subagent",
+      "hidden": true,
+      "options": {},
+      "permission": {
+        "bash": "allow",
+        "edit": "allow",
+        "read": "allow"
+      }
+    },
+    "sdd-explore-fallback": {
+      "model": "github-copilot/gpt-5.4",
+      "prompt": "{file:./agents/sdd-explore.md}",
+      "tools": {
+        "bash": true,
+        "edit": true,
+        "read": true,
+        "write": true
+      },
+      "description": "Investigate codebase and think through ideas",
+      "mode": "subagent",
+      "hidden": true,
+      "options": {},
+      "permission": {
+        "bash": "allow",
+        "edit": "allow",
+        "read": "allow"
+      }
+    },
+    "sdd-init-fallback": {
+      "model": "github-copilot/gpt-4.1",
+      "prompt": "{file:./agents/sdd-init.md}",
+      "tools": {
+        "bash": true,
+        "edit": true,
+        "read": true,
+        "write": true
+      },
+      "description": "Bootstrap SDD context and project configuration",
+      "mode": "subagent",
+      "hidden": true,
+      "options": {},
+      "permission": {
+        "bash": "allow",
+        "edit": "allow",
+        "read": "allow"
+      }
+    },
+    "sdd-propose-fallback": {
+      "model": "github-copilot/claude-sonnet-4.6",
+      "prompt": "{file:./agents/sdd-propose.md}",
+      "tools": {
+        "bash": true,
+        "edit": true,
+        "read": true,
+        "write": true
+      },
+      "description": "Create change proposals from explorations",
+      "mode": "subagent",
+      "hidden": true,
+      "options": {},
+      "permission": {
+        "bash": "allow",
+        "edit": "allow",
+        "read": "allow"
+      }
+    },
+    "sdd-spec-fallback": {
+      "model": "github-copilot/claude-haiku-4.5",
+      "prompt": "{file:./agents/sdd-spec.md}",
+      "tools": {
+        "bash": true,
+        "edit": true,
+        "read": true,
+        "write": true
+      },
+      "description": "Write detailed specifications from proposals",
+      "mode": "subagent",
+      "hidden": true,
+      "options": {},
+      "permission": {
+        "bash": "allow",
+        "edit": "allow",
+        "read": "allow"
+      }
+    },
+    "sdd-tasks-fallback": {
+      "model": "github-copilot/claude-haiku-4.5",
+      "prompt": "{file:./agents/sdd-tasks.md}",
+      "tools": {
+        "bash": true,
+        "edit": true,
+        "read": true,
+        "write": true
+      },
+      "description": "Break down specs and designs into implementation tasks",
+      "mode": "subagent",
+      "hidden": true,
+      "options": {},
+      "permission": {
+        "bash": "allow",
+        "edit": "allow",
+        "read": "allow"
+      }
+    },
+    "sdd-verify-fallback": {
+      "model": "github-copilot/gemini-3.1-pro-preview",
+      "prompt": "{file:./agents/sdd-verify.md}",
+      "tools": {
+        "bash": true,
+        "edit": true,
+        "read": true,
+        "write": true
+      },
+      "description": "Validate implementation against specs",
+      "mode": "subagent",
+      "hidden": true,
+      "options": {},
+      "permission": {
+        "bash": "allow",
+        "edit": "allow",
+        "read": "allow"
+      }
     }
+  },
+  "provider": {
+    "ollama": {
+      "name": "Ollama (LAN)",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://ubuntu.local:11434/v1"
+      },
+      "models": {
+        "glm-4.7-flash:q4_K_M": {
+          "name": "GLM Flash"
+        },
+        "gemma4:e4b": {
+          "name": "Gemma4"
+        }
+      }
+    }
+  },
+  "mcp": {
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "enabled": true
+    },
+    "langchain": {
+      "type": "remote",
+      "url": "https://docs.langchain.com/mcp",
+      "enabled": true
+    },
+    "engram": {
+      "type": "local",
+      "command": [
+        "/usr/local/bin/engram",
+        "mcp",
+        "--tools=agent"
+      ]
+    }
+  },
+  "permission": {
+    "read": {
+      "*": "allow",
+      "**/.env": "deny",
+      "**/.env.*": "deny",
+      "**/credentials.json": "deny",
+      "**/secrets/**": "deny",
+      "*.env": "deny",
+      "*.env.*": "deny"
+    },
+    "bash": {
+      "*": "allow",
+      "git commit *": "ask",
+      "git push": "ask",
+      "git push *": "ask",
+      "git push --force *": "ask",
+      "git rebase *": "ask",
+      "git reset --hard *": "ask"
+    }
+  }
 }
