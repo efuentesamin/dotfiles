@@ -4,13 +4,31 @@
 
 The orchestrator passes `artifact_store.mode` with one of: `engram | openspec | hybrid | none`.
 
-Default resolution (when orchestrator does not explicitly set a mode):
-1. If Engram is available → use `engram`
-2. Otherwise → use `none`
+The orchestrator ASKs the user which mode they want when `/sdd-new`, `/sdd-ff`, or `/sdd-continue` is invoked for the first time in a session. The choice is cached for the session.
 
-`openspec` and `hybrid` are NEVER used by default — only when explicitly passed.
+Default (if user doesn't specify): if Engram is available → `engram`. Otherwise → `none`.
 
-When falling back to `none`, recommend the user enable `engram` or `openspec`.
+## Mode Roles
+
+- **`engram`**: Working memory between sessions. Upserts overwrite — no iteration history. Local only, not shareable.
+- **`openspec`**: Source of truth. Files in repo, git history, team-shareable, full audit trail.
+- **`hybrid`**: Both — files for team + engram for recovery. Higher token cost.
+- **`none`**: Ephemeral. Lost when conversation ends.
+
+### Mode Comparison
+
+| Capability | `engram` | `openspec` | `hybrid` | `none` |
+|------------|----------|------------|----------|--------|
+| Cross-session recovery | ✅ | ❌ (needs git) | ✅ | ❌ |
+| Compaction survival | ✅ | ❌ | ✅ | ❌ |
+| Shareable with team | ❌ (local DB) | ✅ (committed files) | ✅ (files) | ❌ |
+| Full iteration history | ❌ (upsert overwrites) | ✅ (git history) | ✅ (files + git) | ❌ |
+| Audit trail (archive) | Partial (report only) | ✅ (full folder) | ✅ (both) | ❌ |
+| Project files created | Never | Yes | Yes | Never |
+
+### `engram` mode limitation
+
+Engram uses `topic_key`-based upserts. Re-running a phase for the same change **overwrites** the previous version — no revision history is kept. The archive phase saves a summary report, not the full artifact folder. For iteration history or team collaboration, use `openspec` or `hybrid`.
 
 ## Behavior Per Mode
 
@@ -39,10 +57,12 @@ The orchestrator persists DAG state after each phase transition to enable SDD re
 
 | Mode | Persist State | Recover State |
 |------|--------------|---------------|
-| `engram` | `mem_save(topic_key: "sdd/{change-name}/state")` | `mem_search("sdd/*/state")` → `mem_get_observation(id)` |
+| `engram` | `mem_save(topic_key: "sdd/{change-name}/state", capture_prompt: false*)` | `mem_search("sdd/*/state")` → `mem_get_observation(id)` |
 | `openspec` | Write `openspec/changes/{change-name}/state.yaml` | Read `openspec/changes/{change-name}/state.yaml` |
 | `hybrid` | Both: `mem_save` AND write `state.yaml` | Engram first; filesystem fallback |
 | `none` | Not possible — warn user | Not possible |
+
+*For state automated artifacts, set `capture_prompt: false` when the Engram tool schema supports it; if an older schema rejects or does not expose the field, omit it rather than failing.
 
 ## Common Rules
 
@@ -92,6 +112,7 @@ After completing your work, you MUST call:
     topic_key: "sdd/{change-name}/{artifact-type}",
     type: "architecture",
     project: "{project}",
+    capture_prompt: false,
     content: "{your full artifact markdown}"
   )
 If you return without calling mem_save, the next phase CANNOT find your artifact and the pipeline BREAKS.
@@ -108,10 +129,13 @@ After completing your work, you MUST call:
     topic_key: "sdd/{change-name}/{artifact-type}",
     type: "architecture",
     project: "{project}",
+    capture_prompt: false,
     content: "{your full artifact markdown}"
   )
 If you return without calling mem_save, the next phase CANNOT find your artifact and the pipeline BREAKS.
 ```
+
+For SDD artifacts, `capture_prompt: false` is explicit and mandatory when the Engram tool schema supports it. Engram v1.15.3 defaults `capture_prompt` to true for normal human/proactive saves, but automated pipeline artifacts must not capture the user's prompt. Do not infer this from `type` because SDD artifacts and real human architecture decisions both use `architecture`. If an older schema rejects or does not expose `capture_prompt`, omit it rather than failing.
 
 ## Skill Registry
 

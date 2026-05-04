@@ -25,7 +25,8 @@ import { stat } from "node:fs/promises"
 import { type Plugin, type ToolContext, tool } from "@opencode-ai/plugin"
 import type { createOpencodeClient } from "@opencode-ai/sdk"
 import type { Event, Message, Part, TextPart } from "@opencode-ai/sdk"
-import { adjectives, animals, colors, uniqueNamesGenerator } from "unique-names-generator"
+import ung from "unique-names-generator"
+const { adjectives, animals, colors, uniqueNamesGenerator } = ung
 
 // ==========================================
 // INLINED: kdco-primitives/types
@@ -1386,7 +1387,8 @@ export const BackgroundAgents: Plugin = async (ctx) => {
 
     // Inject delegation rules into system prompt
     "experimental.chat.system.transform": async (_input: SystemTransformInput, output) => {
-      output.system.push(DELEGATION_RULES)
+      const combined = [...output.system, DELEGATION_RULES].join("\n\n---\n\n")
+      output.system = [combined]
     },
 
     // Compaction hook - inject delegation context for context recovery
